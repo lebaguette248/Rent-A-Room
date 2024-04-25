@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+    <h1>Rent-a-Room</h1>
+    <p>Willkommen auf unserer Seite, Rent-a-Room. Hier kannst du Räume mieten und vermieten!</p>
+    <p>Gib hier deine Email an, um fortzufahren.</p>
+    <span>john.doe@example.com für testen</span>
+    <form action="{{ url_for('login') }}" method="post">
+        <label for="email">E-Mail-Adresse:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Einloggen</button>
+    </form>
+</body>
+</html>

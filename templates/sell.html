@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sell.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shared.css') }}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Rooms</a></li>
+                <li><a href="/sell">Sell</a></li>
+                <li><a href="/account">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <h1>Raum vermieten</h1>
+    <form action="{{ url_for('sell') }}" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="beschreibung">Beschreibung:</label>
+            <textarea id="beschreibung" name="beschreibung" required></textarea>
+        </div>
+        <div>
+            <label for="adresse">Adresse:</label>
+            <input type="text" id="adresse" name="adresse" required>
+        </div>
+        <div>
+            <label for="zimmer">Anzahl Zimmer:</label>
+            <input type="number" id="zimmer" name="zimmer" required>
+        </div>
+        <div>
+            <label for="fläche">Fläche in m²:</label>
+            <input type="text" id="fläche" name="fläche" required pattern="[0-9]+([,\.][0-9]+)?">
+        </div>
+        <button type="submit">Raum anbieten</button>
+    </form>
+
+<!-- Vorhandene Einträge für das Hinzufügen eines Raums -->
+<!-- ... -->
+
+<!-- Liste der Räume, die der Benutzer besitzt -->
+<dir id="owned_rooms_container">
+    <h2>Meine angebotenen Räume</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Beschreibung</th>
+                <th>Adresse</th>
+                <th>Anzahl Zimmer</th>
+                <th>Fläche in m²</th>
+                <!-- Weitere Spalten nach Bedarf -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in owned_rooms %}
+            <tr>
+                <td>{{ room.name }}</td>
+                <td>{{ room.beschreibung }}</td>
+                <td>{{ room.adresse }}</td>
+                <td>{{ room.zimmer }}</td>
+                <td>{{ room.fläche }}</td>
+                <!-- Weitere Datenzellen nach Bedarf -->
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">Keine Räume gefunden.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</dir>
+
+
+
+</body>
+</html>
